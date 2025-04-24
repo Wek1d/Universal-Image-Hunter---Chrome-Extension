@@ -1,0 +1,29 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Image Hunter",
+  "version": "2.1",
+  "description": "Tüm sitelerdeki resimleri avlar ve yönetmenizi sağlar!",
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "downloads",
+    "contextMenus"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "128": "icon.png"
+    }
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_idle"
+  }],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

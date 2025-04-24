@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Hunter</title>
+  <link href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #1e1e2e;
+      --bg-darker: #161622;
+      --primary: #7b61ff;
+      --text: #e0e0e0;
+      --text-light: #a0a0a0;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text);
+      width: 800px;
+      height: 600px;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+    .app-container {
+      display: grid;
+      grid-template-rows: auto 1fr;
+      height: 100%;
+    }
+    .header {
+      background: var(--bg-darker);
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .controls {
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.2s;
+    }
+    .btn:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+    .content {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      height: 100%;
+    }
+    .sidebar {
+      background: var(--bg-darker);
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .filter-group {
+      margin-bottom: 20px;
+    }
+    .filter-title {
+      font-size: 0.9rem;
+      color: var(--text-light);
+      margin-bottom: 8px;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 15px;
+      overflow-y: auto;
+    }
+    .image-card {
+      background: var(--bg-darker);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      height: 250px;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    .image-preview {
+      width: 100%;
+      height: 180px;
+      object-fit: contain;
+      background: #2a2a3a;
+      cursor: zoom-in;
+    }
+    .image-info {
+      padding: 10px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .image-actions {
+      display: flex;
+      justify-content: space-between;
+      margin-top: auto;
+    }
+    .action-btn {
+      background: transparent;
+      color: var(--text-light);
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 5px;
+      border-radius: 4px;
+    }
+    .action-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="logo">
+        <i class="mdi mdi-image-search"></i>
+        <span>Universal Image Hunter</span>
+      </div>
+      <div class="controls">
+        <button id="refresh" class="btn">
+          <i class="mdi mdi-refresh"></i>
+          Yenile
+        </button>
+        <button id="downloadAll" class="btn">
+          <i class="mdi mdi-download"></i>
+          Tümünü İndir
+        </button>
+      </div>
+    </div>
+    <div class="content">
+      <div class="sidebar">
+        <div class="filter-group">
+          <div class="filter-title">Filtreler</div>
+          <input type="text" id="search" placeholder="Resim ara..." style="width:100%;padding:8px;border-radius:4px;border:none;background:#2a2a3a;color:white;">
+        </div>
+        <div class="filter-group">
+          <div class="filter-title">Site Bilgisi</div>
+          <div id="siteInfo">Yükleniyor...</div>
+        </div>
+      </div>
+      <div class="image-grid" id="imageGrid">
+        <div class="loading">Resimler yükleniyor...</div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
