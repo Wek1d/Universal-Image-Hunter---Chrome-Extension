@@ -1,3 +1,9 @@
+[SCREENSHOTS]
+
+![Screenshot_1](https://github.com/user-attachments/assets/3eda5389-4a38-48d8-b6b9-c70dfe39b642)
+
+
+
 A powerful Chrome extension that helps you find, view, and download all images on any webpage with a beautiful dark mode interface.
 
 🌟 Features
